@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Ticket Management System</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+  <h1>Ticket Management System</h1>
+  <hr>
+  <h2>View Ticket</h2>
+
+  <form >
+
+    <!-- Add hidden form field to handle update -->
+    <input type="hidden" th:field="${ticket.id}" name = "id" />
+
+    <input type="text" th:field="${ticket.title}" class="form-control mb-4 col-4" name = "Ticket Title"/>
+
+    <input type="text" th:field="${ticket.shortDesc}" class="form-control mb-4 col-4" name = "Short Description"/>
+
+    <input type="text" th:field="${ticket.content}" class="form-control mb-4 col-4" name = "Ticket content">
+
+	<a th:href="@{/tickets}" class="btn btn-primary">Go back to Tickets</a>
+  </form>
+  <hr>
+</div>
+</body>
+
+</html>

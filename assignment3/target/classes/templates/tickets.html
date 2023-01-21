@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>List Of Tickets</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div class="container my-2">
+		<div class="topnav">
+			<h1>
+				Ticket List <a th:href="@{/showTicketForm}"
+					class="btn btn-primary btn-sm mb-3"> New Ticket </a>
+			</h1>
+		</div>
+
+		<form th:action="@{/search}" method="get">
+			<input type="text" name="keyword" th:value="${keyword}"
+				placeholder="Find by Title & Short Desc" size="50">
+			<button type="submit" class="btn btn-info">Search</button>
+		</form>
+		<table border="1" class="table table-striped table-responsive-md">
+        <thead>
+        <tr bgcolor = #ffa500>
+        	<th>#</th> 
+            <th>Ticket Title</th>
+            <th>Ticket Short Description</th>
+            <th>Ticket Created On</th>
+            <th> Actions </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ticket : ${ticketList}">
+            <td th:text="${ticket.id}"></td>
+            <td th:text="${ticket.title}"></td>
+            <td th:text="${ticket.shortDesc}"></td>
+            <td th:text="${ticket.createdOn}"></td>
+            <td> <a th:href="@{/editTicketForm/{id}(id=${ticket.id})}" class="btn btn-primary">Edit</a>
+                <a th:href="@{/deleteTicket/{id}(id=${ticket.id})}" class="btn btn-danger">Delete</a>
+                <a th:href="@{/viewTicket/{id}(id=${ticket.id})}" class="btn btn-info">view</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>
